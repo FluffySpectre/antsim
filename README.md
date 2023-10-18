@@ -1,2 +1,2 @@
-# antsim
+# js-ants
 JavaScript-controlled ant colony
