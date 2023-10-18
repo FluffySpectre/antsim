@@ -1,0 +1,99 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JS-Ants</title>
+
+  <script src="libraries/split.min.js"></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
+  <link rel="stylesheet" href="libraries/bulma.min.css">
+
+  <link rel="stylesheet" data-name="vs/editor/editor.main"
+    href="./node_modules/monaco-editor/min/vs/editor/editor.main.css">
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <div id="mainContainer">
+    <div id="leftContainer" class="split">
+      <div class="top-bar">
+        <div class="left">
+          <button class="btn small-margin-right" onclick="document.getElementById('codeUpload').click();">Load
+            File</button>
+          <input type="file" id="codeUpload" name="myfile" accept=".js" onchange="codeUploaded()"
+            style="display: none;" />
+
+          <a id="codeDownloadLink" class="btn" download="PlayerAnt.js" href=""><span>Download Code</span></a>
+
+          <input type="checkbox" id="autoSaveCheck" name="autoSaveCheck" value="0" onclick="autoSaveCheckClick()">
+          <label id="autoSaveCheckLabel" for="autoSaveCheck">Auto-save</label>
+        </div>
+        <div class="right">
+          <button class="btn" id="runButton" onclick="run()">Run</button>
+
+          <div id="codeSaveIndicator"><span>Saved!</span></div>
+        </div>
+      </div>
+      <div id="editorContainer"></div>
+    </div>
+    <div id="rightContainer" class="split">
+      <div class="top-bar">
+        <div class="left">
+          <div id="tabs" class="tabs is-boxed">
+            <ul>
+              <li class="tab is-active" id="simTab" onclick="openTab('sim')">
+                <a>
+                  <span class="is-small"><i class="fas" aria-hidden="true"></i></span>
+                  <span>Simulation</span>
+                </a>
+              </li>
+              <li class="tab" id="docsTab" onclick="openTab('docs')">
+                <a>
+                  <span class="is-small"><i class="fas" aria-hidden="true"></i></span>
+                  <span>API Docs</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="right">
+          <div id="madeBy">JS-Ants &copy; 2021 by Sennio</div>
+        </div>
+      </div>
+      <div id="simContainer">
+        <div id="sim" class="content-tab">
+          <div id="simHint" class="sim-hint">
+            <p>
+              1. Check out the <a onclick="openTab('docs')">API Docs</a></br><br />
+              2. Write the code!</br><br />
+              3. Click <span onclick="run()" class="run-span">Run</span> to test your ants!
+            </p>
+          </div>
+        </div>
+        
+        <div id="docs" class="content-tab" style="display: none;">
+          <iframe id="apiReferenceiFrame" src="reference.html"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var require = {
+      paths: {
+        'vs': './node_modules/monaco-editor/min/vs'
+      }
+    };
+  </script>
+  <script src="./node_modules/monaco-editor/min/vs/loader.js"></script>
+  <script src="./node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+  <script src="./node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
+
+  <script src="./index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
+  <link rel="stylesheet" href="../libraries/bulma.min.css">
+
+  <link rel="stylesheet" href="./styles.css">
+
+  <script type="text/javascript">
+    var receivedJS = null;
+    window.load = function (js) {
+      receivedJS = js;
+    };
+  </script>
+
+  <script src="libraries/p5.min.js"></script>
+  <script src="build/build.js"></script>
+</head>
+
+<body oncontextmenu="return false;">
+  <div id="simSpeedPanel">
+    <div class="buttons has-addons small-margin-right">
+      <button class="button has-text-weight-light" id="pauseButton" onclick="pauseSim()" title="Pause simulation">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M14,19H18V5H14M6,19H10V5H6V19Z" />
+        </svg>
+      </button>
+      <button class="button has-text-weight-light" id="playButton" style="display: none;" onclick="playSim()" title="Play simulation">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+        </svg>
+      </button>
+      <button class="button has-text-weight-light" id="restartButton" style="display: none;"  onclick="restartSim()" title="Restart">
+        <svg style="width:24px;height:24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/>
+        </svg>
+      </button>
+      <button class="button has-text-weight-light" id="stepButton" onclick="stepSim()" title="Step">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M5,5V19H8V5M10,5V19L21,12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="control">
+      <div class="select">
+        <select class="has-text-weight-light" onchange="simSpeedChanged(this.selectedIndex)">
+          <option>Standard Speed (1x)</option>
+          <option>Supersonic Speed (2x)</option>
+          <option>Light Speed (4x)</option>
+          <option>Ridiculous Speed (8x)</option>
+          <option>Ludicrous Speed (16x)</option>
+        </select>
+      </div>
+
+      <div class="select">
+        <select class="has-text-weight-light" onchange="rendererChanged(this.selectedIndex)">
+          <option>2D</option>
+          <option selected>3D</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div id="statsPanel">
+    <div class="stats-info-box">
+      <div class="colony-label">Colony Name</div>
+      <div id="colonyName" class="colony-value">-</div>
+    </div>
+    <div class="stats-box food">
+      <div class="stats-label">Food</div>
+      <div id="foodValue" class="stats-value">-</div>
+    </div>
+    <div class="stats-box killed-bugs">
+      <div class="stats-label">Killed Bugs</div>
+      <div id="killedBugsValue" class="stats-value">-</div>
+    </div>
+    <div class="stats-box dead-ants">
+      <div class="stats-label">Dead Ants</div>
+      <div id="deadAntsValue" class="stats-value">-</div>
+    </div>
+    <div class="stats-box points">
+      <div class="stats-label">Points</div>
+      <div id="pointsValue" class="stats-value">-</div>
+    </div>
+  </div>
+
+  <div id="infoContainer">
+    <p id="infoText"></p>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

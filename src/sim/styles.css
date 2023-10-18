@@ -1,0 +1,130 @@
+html, body {
+    padding: 0;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #333;
+}
+
+#statsPanel {
+    position: relative;
+    width: 800px;
+    height: 4rem;
+    background-color: #333;
+}
+
+.stats-box {
+    width: 8rem;
+    height: calc(100% - 5px);
+    float: left;
+    border: 1px solid transparent;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-top: 5px;
+    margin-left: 8px;
+    margin-bottom: 0px;
+    text-align: left;
+    position: relative;
+}
+
+.stats-label {
+    margin: 5px;
+}
+
+.stats-value {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-weight: bold;
+}
+
+.dead-ants {
+    background-color: #cea09c;
+}
+
+.food {
+    background-color: #aad3a1;
+}
+
+.killed-bugs {
+    background-color: #9997c1;
+}
+
+.points {
+    background-color: #dcdad4;
+}
+
+.stats-info-box {
+    width: 10rem;
+    height: 100%;
+    float: left;
+    background-color: #afd9b1;
+    border: 1px solid transparent;
+    border-top-left-radius: 8px;
+    position: relative;
+}
+
+.colony-label {
+    margin: 5px;
+}
+
+.colony-value {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-weight: bold;
+}
+
+#simSpeedPanel {
+    position: relative;
+    visibility: hidden;
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+#simSpeedLabel {
+    color: white;
+}
+
+canvas {
+    position: relative;
+}
+
+#pauseButton {
+    /* background-color: lime; */
+    width: 5rem;
+    height: 2.5rem;
+}
+#playButton {
+    width: 5rem;
+    height: 2.5rem;
+}
+#stepButton {
+    width: 5rem;
+    height: 2.5rem;
+}
+.buttons:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.small-margin-right {
+    margin-right: 0.5rem;
+}
+
+#infoContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    pointer-events: none;
+}
+#infoText {
+    font-size: 24px;
+}

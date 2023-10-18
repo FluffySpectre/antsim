@@ -1,0 +1,653 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
+
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background-color: #333;
+    }
+
+    h1 {
+      font-size: 20px;
+      line-height: 40px;
+      font-weight: 500;
+      color: #dbdbdb;
+      margin: 0;
+      padding-top: 1rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      letter-spacing: 0;
+      border-top: 1px solid white;
+    }
+    h1:first-of-type {
+      border-top: none;
+      margin: 0;
+    }
+
+    h2 {
+      border-bottom-color: #dbdbdb;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      width: 100%;
+      padding-top: 0;
+      font-size: 18px;
+    }
+
+    h3 {
+      font-size: medium;
+      color: #dbdbdb;
+      text-transform: uppercase;
+      padding-bottom: 0;
+    }
+
+    .ref-description {}
+
+    .linked-anchor:target {
+      background-color: #ffa;
+    }
+
+    .method-list {
+      box-sizing: border-box;
+      word-wrap: break-word;
+      border-radius: 10px;
+      border: 1px solid #404040;
+      background-color: #404040;
+      margin-bottom: 1rem;
+      margin-right: 0.5rem;
+    }
+    .method-list-title {
+      background-color: #5a5959;
+      height: 2rem;
+      margin: 0;
+      margin-bottom: 0.5rem;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding-left: 0.5rem;
+    }
+    .method-list-description {
+      padding-bottom: 16px;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      border-bottom: 1px solid #666;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    .method-list-group {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+    .method-list-item {
+      padding-top: 16px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #666;
+      list-style: none;
+    }
+    .method-list-item:first-child {
+      padding-top: 0;
+    }
+    .method-list-item:last-child {
+      padding-bottom: 16px;
+      border-bottom: none;
+    }
+    .method-list-item-label {
+      display: flex;
+      margin: 0;
+      align-items: baseline;
+      flex-wrap: wrap;
+      z-index: 1;
+      position: relative;
+      padding-top: 8px;
+      margin-top: -8px;
+      padding-bottom: 8px;
+      margin-bottom: -8px;
+    }
+    .method-list-item-label-name {
+      font-weight: 600;
+      color: rgb(0, 174, 255);
+      font-size: 14px;
+      margin-right: 4px;
+    }
+    .method-list-item-label-type {
+      color: #8792a2;
+      font-size: 12px;
+      margin: 0;
+      margin-right: 4px;
+      font-weight: 600;
+    }
+    .method-list-item-description {
+      font-size: 14px;
+      line-height: 22px;
+      margin-top: 4px;
+    }
+    .method-list-spacer {
+      height: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #666;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    a {
+      font-weight: 600;
+      color: rgb(0, 174, 255);
+      text-decoration: none;
+    }
+    a:active {
+      font-weight: 600;
+      color: rgb(0, 174, 255);
+    }
+    a:visited {
+      font-weight: 600;
+      color: rgb(0, 174, 255);
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    var apiPlayerInfo = {
+      title: '',
+      items: [{
+        title: 'Properties',
+        description: '',
+        itemKeyTitle: 'Property',
+        itemDescriptionTitle: 'Description',
+        items: [{
+            title: 'name',
+            type: 'string',
+            description: 'Your name or nickname.'
+          },
+          {
+            title: 'colonyName',
+            type: 'string',
+            description: 'The name of your ant colony.'
+          },
+          {
+            title: 'castes',
+            type: 'array',
+            description: 'An array of the different castes in your colony. Look at <a href="#Caste">Caste</a> for the object structure.'
+          }
+        ]
+      },
+      {
+        title: 'Caste',
+        description: '',
+        itemKeyTitle: 'Property',
+        itemDescriptionTitle: 'Description',
+        items: [{
+            title: 'name',
+            type: 'string',
+            description: 'The name of the caste.'
+          },
+          {
+            title: 'color',
+            type: 'string',
+            description: 'The color of the ants. The allowed spelling styles are: red, rgb(255,0,0), #ff0000.'
+          },
+          {
+            title: 'speed',
+            type: 'number',
+            description: 'Determines how many steps an ant can take per round.'
+          },
+          {
+            title: 'rotationSpeed',
+            type: 'number',
+            description: 'Determines how many degrees an ant can turn per round. While an ant is turning it cannot move.'
+          },
+          {
+            title: 'load',
+            type: 'number',
+            description: 'Determines how many units of food an ant can carry. When an ant is carrying something, its attack value drops to 0. When an ant is fully loaded, its movement speed is cut in half.'
+          },
+          {
+            title: 'range',
+            type: 'number',
+            description: 'Determines how many steps an ant can take before it dies. Once an ant has travelled a third of its range, it gets tired. This doesn’t have an effect on the other skills, though.'
+          },
+          {
+            title: 'viewRange',
+            type: 'number',
+            description: 'Determines how far an ant can see. It’s measured in steps. It doesn’t matter if the object is in front of or behind the ant.'
+          },
+          {
+            title: 'vitality',
+            type: 'number',
+            description: 'Determines how many hit points an ant has left. If the ant returns to the anthill, its hit points are recharged.'
+          },
+          {
+            title: 'attack',
+            type: 'number',
+            description: 'Determines how many hit points are deducted from an opponent per round when an ant is fighting it.'
+          },
+        ]
+      }]
+    };
+
+    var apiEvents = {
+      title: 'Events',
+      items: [{
+        title: 'Events',
+        description: '',
+        items: [{
+            title: 'waits()',
+            description: 'If the ant has no assigned tasks, it waits for new tasks. This function is called to inform you that it is waiting.'
+          },
+          {
+            title: 'becomesTired()',
+            description: 'This function is called when an ant has travelled one third of its movement range.'
+          },
+          {
+            title: 'hasDied(death:string)',
+            description: 'This function is called if an ant dies. The parameter is the type of death. Can be either "starved" or "eaten".'
+          },
+          {
+            title: 'tick()',
+            description: 'This function is called in every simulation round.'
+          },
+          {
+            title: 'spotsSugar(sugar:Sugar)',
+            description: 'This function is called as soon as an ant sees sugar in its 360° visual range. The parameter is the sugar that the ant has spotted.'
+          },
+          {
+            title: 'spotsFruit(fruit:Fruit)',
+            description: 'This function is called as soon as an ant sees an apple within its 360° visual range. The parameter is the piece of fruit that the ant has spotted.'
+          },
+          {
+            title: 'sugarReached(sugar:Sugar)',
+            description: 'If the ant’s target is sugar, this function is called as soon as the ant has reached its target. It means that the ant is now near enough to its target to interact with it.'
+          },
+          {
+            title: 'fruitReached(fruit:Fruit)',
+            description: 'If the ant’s target is a piece of fruit, this function is called as soon as the ant reaches its target. It means that the ant is now near enough to its target to interact with it.'
+          },
+          {
+            title: 'spotsFriend(ant:BaseAnt)',
+            description: 'Just as ants can see various types of food, they can also visually detect other game elements. This function is called if the ant sees another ant.'
+          },
+          {
+            title: 'smellsFriend(marker:Marker)',
+            description: 'Ants can detect markers left by other ants. This function is called when an ant smells a marker for the first time.'
+          },
+          {
+            title: 'spotsBug(bug:Bug)',
+            description: 'Just as ants can see various types of food, they can also visually detect other game elements. This function is called if the ant sees a bug.'
+          },
+          {
+            title: 'underAttack(bug:Bug)',
+            description: 'This function is called if a bug attacks.'
+          },
+          {
+            title: 'determineCaste(availableInsects: {[key: string]: number}): string',
+            description: 'Every time that a new ant is born, its job group must be set. You can do so with the help of the value returned by this function.'
+          },
+        ]
+      }]
+    };
+
+    // METHODS
+    var apiMethods = {
+      items: [{
+          title: 'Commands for movement',
+          description: 'The unit of length for the following commands is steps.',
+          items: [{
+              title: 'this.goForward(distance:number)',
+              description: 'The ant moves forward. The ant’s target remains unaltered. If a parameter is specified, the ant will aim for its target again as soon as it has travelled the specified distance.'
+            },
+            {
+              title: 'this.goToTarget(target:<a href="#Coordinate">Coordinate</a>)',
+              description: 'The ant saves the specified target and walks to it. A target can be Sugar, Fruit or a Bug.'
+            },
+            {
+              title: 'this.goAwayFromTarget(target:<a href="#Coordinate">Coordinate</a>, distance:number)',
+              description: 'The ant turns in the direction opposite the specified target and then walks straight ahead. The ant’s target remains unaltered and the walking distance can be specified.'
+            },
+            {
+              title: 'this.goHome()',
+              description: 'The ant walks towards its anthill.'
+            },
+            {
+              title: 'this.stop()',
+              description: 'The ant stands still and forgets its current target. In the next round the result of waits() is called.'
+            },
+          ]
+        },
+        {
+          title: 'Commands for rotation',
+          description: 'All values are specified as whole angles measured in degrees proceeding clockwise. 0 thus means right, 90 is down, 180 is left, 270 is up and 360 is right again.<br /><br />For an ant, turning always takes precedence over moving. Thus, if an ant receives a “turn” command before it has finished executing a “go” command, the “go” command will be interrupted, the “turn” command will be executed instead, and then the “go” command will be resumed. An ant cannot turn and walk at the same time.',
+          itemKeyTitle: 'Function',
+          itemDescriptionTitle: 'Description',
+          items: [{
+              title: 'this.turnToDirection(direction:number)',
+              description: 'The ant turns in the specified direction.'
+            },
+            {
+              title: 'this.turnByDegrees(angle:number)',
+              description: 'The ant turns itself around the specified angle. Positive values turn the ant to the right, negative values turn it to the left.'
+            },
+            {
+              title: 'this.turnAround()',
+              description: 'The ant turns 180 degrees in the opposite direction.'
+            },
+            {
+              title: 'this.turnToTarget(target:<a href="#Coordinate">Coordinate</a>)',
+              description: 'The ant turns in the direction of the specified target.'
+            },
+          ],
+        },
+        {
+          title: 'Commands for food',
+          description: 'There are two different food sources: sugar and apples (or fruit). Both can be picked up with the take command, but they have different effects on the ant’s properties. Sugar is divided into individual cubes and each cube causes an increase in currentLoad. Apples, on the other hand, must be carried by several ants and can be recognized by the property carriedFruit.',
+          itemKeyTitle: 'Function',
+          itemDescriptionTitle: 'Description',
+          items: [{
+              title: 'this.take(food:Food)',
+              description: 'The ant picks up the specified food. In the case of sugar, it takes as much as possible until it reaches its maximum load (see <a href="#currentLoad">currentLoad</a> and <a href="#maxLoad">maxLoad</a>). In the case of a piece of fruit, the ant begins carrying the fruit (see <a href="#carriedFruit">carriedFruit</a>).'
+            },
+            {
+              title: 'this.drop()',
+              description: 'The ant drops the food that it is currently carrying. Sugar is lost while apples remain where they fall and can be picked up again later. The command is not necessary when delivering food to the anthill - that occurs automatically.'
+            },
+          ]
+        },
+        {
+          title: 'Commands for communication',
+          description: 'Ants that want to communicate something to other ants use markers to pass on information.',
+          itemKeyTitle: 'Function',
+          itemDescriptionTitle: 'Description',
+          items: [{
+            title: 'this.setMarker(information:number, spread:number)',
+            description: 'The ant sprays a marker at the current location. The possible parameters are data contained in the marker (these can be read out of the result of smellsFriend(marker) via marker.information) and how far the marker spreads out. The farther the marker spreads out, the faster it will disappear.'
+          }, ]
+        },
+        {
+          title: 'Commands for combat',
+          description: 'It is possible to actively attack bugs.',
+          itemKeyTitle: 'Function',
+          itemDescriptionTitle: 'Description',
+          items: [{
+            title: 'this.attackTarget(insect:Insect)',
+            description: 'The ant saves the specified bug as its target and walks toward it. When the ant arrives at its target, it begins to fight.'
+          }, ]
+        },
+        {
+          title: 'Commands for debugging',
+          description: 'If your ants aren’t doing what they’re supposed to, use this tools.',
+          itemKeyTitle: 'Function',
+          itemDescriptionTitle: 'Description',
+          items: [{
+            title: 'this.think(message:string)',
+            description: 'This function causes the ant to display thought bubbles that can be used for debugging.'
+          }, ]
+        },
+      ],
+    };
+
+    // PROPERTIES
+    var apiProperties = {
+      title: 'Properties',
+      items: [{
+          title: 'Caste-related properties',
+          description: 'The following values of an ant are determined by its caste.',
+          itemKeyTitle: 'Property',
+          itemDescriptionTitle: 'Description',
+          items: [{
+              title: '<a class="linked-anchor" id="maxVitality">this.maxVitality</a>',
+              type: 'number',
+              description: 'Returns the ant’s maximum vitality.'
+            },
+            {
+              title: '<a class="linked-anchor" id="maxSpeed">this.maxSpeed</a>',
+              type: 'number',
+              description: 'Returns the ant’s maximum speed. The unit is steps per round.'
+            },
+            {
+              title: '<a class="linked-anchor" id="maxLoad">this.maxLoad</a>',
+              type: 'number',
+              description: 'Returns the maximum load that the ant can bear. The unit is food points. This value determines how much sugar the ant can carry at once and how fast it can carry an apple without the help of other ants.'
+            },
+            {
+              title: '<a class="linked-anchor" id="range">this.range</a>',
+              type: 'number',
+              description: 'Specifies the distance in steps that the ant can travel before it dies of hunger. After the ant has travelled a third of the value, the event <a href="#becomesTired">becomesTired()</a> is called and the value of <a href="#isTired">isTired</a> is set to "true". (See <a href="#traveledDistance">traveledDistance</a>).'
+            },
+            {
+              title: '<a class="linked-anchor" id="attack">this.attack</a>',
+              type: 'number',
+              description: 'Specifies the ant’s attack value. The attack value determines how many hit points the ant deducts from an enemy in each round. The unit is hit points.'
+            },
+            {
+              title: '<a class="linked-anchor" id="viewRange">this.viewRange</a>',
+              type: 'number',
+              description: 'Specifies the ant’s visual range in steps. This range determines how far the ant must be from game elements like sugar in order for the ant to see them. The direction that the ant is facing does not play a role (ants have 360° vision in this game).'
+            },
+            {
+              title: '<a class="linked-anchor" id="rotationSpeed">this.rotationSpeed</a>',
+              type: 'number',
+              description: 'Specifies the speed with which an ant can turn. The unit is degrees per round.'
+            },
+          ]
+        },
+        {
+          title: 'Ant-related properties',
+          description: 'The following values represent the state of a single ant.',
+          items: [{
+              title: '<a class="linked-anchor" id="vitality">this.vitality</a>',
+              type: 'number',
+              description: 'Returns the ant’s current vitality. The unit is hit points. If an ant has 0 vitality or fewer, it dies. This value is always less than or equal to <a href="#maxVitality">maxVitality</a>.'
+            },
+            {
+              title: '<a class="linked-anchor" id="currentSpeed">this.currentSpeed</a>',
+              type: 'number',
+              description: 'Returns the ant’s current possible speed. The unit is steps per round. The value is influenced by the ant’s current load. Ants that are carrying a full load can only travel at half of their maximum speed. This value is always less than or equal to <a href="#maxSpeed">maxSpeed</a>.'
+            },
+            {
+              title: '<a class="linked-anchor" id="currentLoad">this.currentLoad</a>',
+              type: 'number',
+              description: 'Returns the weight of the load that the ant is currently carrying. The unit is food points. This value is always smaller than or equal to <a href="#maxLoad">maxLoad</a>.'
+            },
+            {
+              title: '<a class="linked-anchor" id="bugsInViewRange">this.bugsInViewRange</a>',
+              type: 'number',
+              description: 'Returns the number of bugs in the ant’s 360° visual range. The result depends on the ant’s visual range.'
+            },
+            {
+              title: '<a class="linked-anchor" id="antsInViewRange">this.antsInViewRange</a>',
+              type: 'number',
+              description: 'Returns the number of ants in the ant’s 360° visual range. The result depends on the ant’s visual range.'
+            },
+            {
+              title: '<a class="linked-anchor" id="antsFromSameCasteInViewRange">this.antsFromSameCasteInViewRange</a>',
+              type: 'number',
+              description: 'Returns the number of ants from the same caste in the ant’s 360° visual range. The result depends on the ant’s visual range.'
+            },
+            {
+              title: '<a class="linked-anchor" id="distanceToAntHill">this.distanceToAntHill</a>',
+              type: 'number',
+              description: 'Returns the distance in steps to the anthill.'
+            },
+            {
+              title: '<a class="linked-anchor" id="carriedFruit">this.carriedFruit</a>',
+              type: 'Fruit',
+              description: 'Returns the piece of fruit the ant is currently carrying. If the ant is not carrying a piece of fruit, the value returned is null.'
+            },
+            {
+              title: '<a class="linked-anchor" id="caste">this.caste</a>',
+              type: 'string',
+              description: 'Returns the name of the ant’s caste.'
+            },
+            {
+              title: '<a class="linked-anchor" id="target">this.target</a>',
+              type: 'Coordinate',
+              description: 'Returns the ant’s current target. If the ant currently has no target, the value returned is null.'
+            },
+            {
+              title: '<a class="linked-anchor" id="isTired">this.isTired</a>',
+              type: 'boolean',
+              description: 'Returns whether the ant is tired. The ant becomes tired as soon as it has travelled a third of its maximum range. Once this value has been exceeded, this property changes from false to true and the event <a href="#becomesTired">becomesTired()</a> is called.'
+            },
+            {
+              title: '<a class="linked-anchor" id="remainingDistance">this.remainingDistance</a>',
+              type: 'number',
+              description: 'Returns how many steps forward the ant must go before it reaches its target. This value is reduced each round by <a href="#currentSpeed">currentSpeed</a>.'
+            },
+            {
+              title: '<a class="linked-anchor" id="remainingRotation">this.remainingRotation</a>',
+              type: 'number',
+              description: 'Returns how many degrees the ant still has to turn before it moves forward again. This value is reduced each round by <a href="#rotationSpeed">rotationSpeed</a>.'
+            },
+            {
+              title: '<a class="linked-anchor" id="direction">this.direction</a>',
+              type: 'number',
+              description: 'Returns the direction that the ant is facing.'
+            },
+            {
+              title: '<a class="linked-anchor" id="reached">this.reached</a>',
+              type: 'boolean',
+              description: 'Returns whether the ant has reached its target or not.'
+            },
+            {
+              title: '<a class="linked-anchor" id="traveledDistance">this.traveledDistance</a>',
+              type: 'number',
+              description: 'This property returns the total number of steps that the ant has travelled since its last visit to the anthill.'
+            },
+          ]
+        },
+      ]
+    };
+
+    // HELPERS
+    var apiHelpers = {
+      items: [{
+          title: 'Food',
+          description: 'The following functions help with the check of food sources.',
+          itemKeyTitle: 'Function',
+          itemDescriptionTitle: 'Description',
+          items: [{
+            title: 'this.needsCarriers(fruit:Fruit)',
+            type: 'boolean',
+            description: 'Checks if the specified fruit needs more ants to carry it.'
+          }]
+        },
+        {
+          title: 'Navigation',
+          description: 'The following functions help with distance calculation.',
+          itemKeyTitle: 'Function',
+          itemDescriptionTitle: 'Description',
+          items: [{
+              title: 'Coordinate.distance(c1:Coordinate, c2:Coordinate)',
+              type: 'number',
+              description: 'Returns the distance in steps between two specified game elements.'
+            },
+            {
+              title: 'Coordinate.directionAngle(c1:Coordinate, c2:Coordinate)',
+              type: 'number',
+              description: 'Returns the direction from the first game element specified to the second game element specified.'
+            }
+          ]
+        },
+        {
+          title: 'Random Numbers',
+          description: '',
+          itemKeyTitle: 'Function',
+          itemDescriptionTitle: 'Description',
+          items: [{
+            title: 'RandomNumber.number(min?:number, max?:number)',
+            type: 'number',
+            description: 'Generates a random number within the specified limits.'
+          }]
+        },
+      ]
+    };
+
+    function renderTitle(title, subtitle) {
+      var body = document.body;
+
+      var titleElem = document.createElement('h1');
+      titleElem.innerHTML = title;
+      body.appendChild(titleElem);
+
+      if (subtitle) {
+        var subtitleElem = document.createElement('p');
+        subtitleElem.innerHTML = subtitle;
+        body.appendChild(subtitleElem);
+      }
+    }
+
+    function renderAPICategory(data) {
+      var body = document.body;
+
+      // add the sub categories
+      for (var s of data.items) {
+        // render the list of properties/functions
+        var methodListHTML = '';
+        methodListHTML += '<h3 class="method-list-title">' + s.title + '</h3>';
+        if (s.description)
+          methodListHTML += '<p class="method-list-description">' + s.description + '</p>';
+        methodListHTML += '<ul class="method-list-group">';
+
+        for (var i of s.items) {
+          methodListHTML += '<li class="method-list-item">';
+          methodListHTML += '<div class="method-list-item-label">';
+          methodListHTML += '<span class="method-list-item-label-name">' + i.title + '</span>';
+          methodListHTML += '<span class="method-list-item-label-type">' + (i.type ? i.type : '') + '</span>';
+          methodListHTML += '</div>';
+          methodListHTML += '<div class="method-list-item-description">' + i.description + '</div>';
+          methodListHTML += '</li>';
+        }
+
+        methodListHTML += '</ul>';
+
+        // add the rendered list to the DOM
+        var methodListElem = document.createElement('div');
+        methodListElem.classList.add('method-list');
+        methodListElem.innerHTML = methodListHTML;
+        body.appendChild(methodListElem);
+      }
+    }
+
+    renderTitle('PLAYER_INFO object');
+    renderAPICategory(apiPlayerInfo);
+
+    renderTitle('PlayerAnt class');
+    renderAPICategory(apiEvents);
+    renderAPICategory(apiMethods);
+    renderAPICategory(apiProperties);
+
+    renderTitle('Helpers');
+    renderAPICategory(apiHelpers);
+
+    (function () {
+      "use strict";
+      let target = document.querySelectorAll('a[href^="#"]');
+      let i = 0;
+      for (i = 0; i < target.length; i++) {
+        target[i].onclick = function (e) {
+          let hash = this.getAttribute("href");
+          let elem = document.getElementById(hash.replace("#", ""));
+          elem.scrollIntoView(true);
+          e.preventDefault();
+        }
+      }
+    })();
+  </script>
+</body>
+
+</html>

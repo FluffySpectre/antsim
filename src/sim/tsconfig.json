@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": "./build/build.uncompressed.js",
+        "sourceRoot": "./src/",
+        "rootDir": "src",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "none"
+    }
+}
