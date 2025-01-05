@@ -1,5 +1,8 @@
 # js-ants
-JavaScript-controlled ant colony
+
+JavaScript-controlled ant colony.
+
+![Screenshot](media/screenshot.jpg)
 
 ## How to build
 1. cd src
