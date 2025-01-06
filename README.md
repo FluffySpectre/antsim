@@ -2,7 +2,7 @@
 
 JavaScript-controlled ant colony.
 
-![Screenshot](media/screenshot.jpg)
+![GIF](media/jsants.gif)
 
 ## How to build
 1. cd src
